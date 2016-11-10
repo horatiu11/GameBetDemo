@@ -8,23 +8,25 @@
 
         <title>Laravel</title>
 
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700,800" rel="stylesheet">
+
 
     </head>
 
     <body>
-            <button id="b1"> Login as User 1 </button>
-        <br>
-            <button id="b2"> Login as User 2 </button>
-        <br>
-        <a href="{{ route('logout') }}">
-            <button> Logout </button>
-        </a>
 
-        @if(Auth::check())
-            Logged in as {{Auth::user()->name}}
-        @endif
+        <div id="content">
+            <div id="content-2x" style="top: 150px;">
+                <center>
+                    <h4 style="color:#000;">GameBet Demo</h4>
+                    <h1 style="color:#000;">To begin this demo, please pick a user.</h1>
+                    <button id="button" class="blue globalRadius" type="button">Login as User 1</button>
+                    <button id="button" class="green globalRadius" type="button">Login as User 2</button>
+                </center>
+            </div>
+        </div>
 
     </body>
 </html>
@@ -36,7 +38,7 @@
 </script>
 
 <script>
-    $('#b1').click(function(){
+    $('.blue').click(function(){
         $.ajax({
             method:'POST',
             url: '{{ route("login") }}',
@@ -50,7 +52,7 @@
         });
     });
 
-    $('#b2').click(function(){
+    $('.green').click(function(){
         $.ajax({
             method:'POST',
             url: '{{ route("login") }}',
