@@ -23,6 +23,6 @@ Route::group(['middleware' => ['auth']], function () {
 	//Challenge routes---------------------------------------------
 	Route::get('/challenge', 'ChallengeController@viewPage')->name('challengePage');
 
-	Route::post('/challenge/enter', 'ChallengeController@joinChallenge')->name('challengeEnter');
+	Route::get('/challenge/enter', 'ChallengeController@joinChallenge')->name('challengeEnter');
 	//-------------------------------------------------------------
 });

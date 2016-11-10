@@ -20,9 +20,13 @@ class ChallengeController extends Controller
 
         $challenge = Challenge::where('user1_id', '=', $user->id)->first();
 
+        $challengedUser = $request->input('id');
+
         if($challenge == null){
             $challenge = Challenge::where('user2_id', '=', $user->id)->first();
         }
+
+        $challenge = Challenge::firstOrNew(['user1_id' => $user->id,'user2_id' => $challengedUser]);
 
         if($challenge == null){
 

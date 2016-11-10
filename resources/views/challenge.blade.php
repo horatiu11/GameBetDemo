@@ -6,29 +6,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title> 
+        <title>GameBet Demo</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700,800" rel="stylesheet">
 
     </head>
 
     <body>
-        @if(Auth::user()->id == 1)
-            <button class="challenge"> Challenge User 2 </button>
-        @else
-            <button class="challenge"> Challenge User 1 </button>
-        @endif
 
-        <a href="{{ route('logout') }}">
-            <button> Logout </button>
+        <a style="float:right; margin-right:1em;" href="{{ route('logout') }}">
+            <button id="button" class="blue globalRadius"> Logout </button>
+
         </a>
+        <div id="content">
+            <div id="content-2x" style="top: 150px;">
+                <center>
+                    <h4 style="color:#000;">GameBet Demo - Challenge Page</h4>
+                    <h1 style="color:#000;">Please select a user to challenge</h1>
+                    @if(Auth::user()->id == 1)
+                      <button id="button" class="blue globalRadius" type="button">Challenge User 2</button>
+                    @else
+                      <button id="button" class="green globalRadius" type="button">Challenge User 1</button>
+                    @endif
+                </center>
+            </div>
+        </div>
 
-        @if(Auth::check())
-            Logged in as {{Auth::user()->name}}
-        @endif
     </body>
 </html>
 
@@ -39,16 +44,29 @@
 </script>
 
 <script>
-    $('.challenge').click(function(){
+    $('.blue').click(function(){
         $.ajax({
             method:'POST',
-            url: '{{ route("challengeEnter") }}',
-            data: {id:1},
+            url: '{{ route("login") }}',
+            data:{id:2},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:function(data){
-                console.log('da');
+                window.location.href = "{{ route('challengePage') }}";
+            }
+        });
+    });
+
+    $('.green').click(function(){
+        $.ajax({
+            method:'POST',
+            url: '{{ route("login") }}',
+            data:{id:1},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success:function(data){
                 window.location.href = "{{ route('challengePage') }}";
             }
         });

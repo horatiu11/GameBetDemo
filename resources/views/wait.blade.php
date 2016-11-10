@@ -16,14 +16,19 @@
     </head>
 
     <body>
-
+        <a style="float:right; margin-right:1em;" href="{{ route('logout') }}">
+            <button id="button" class="blue globalRadius"> Logout </button>
+        </a>
         <div id="content">
             <div id="content-2x" style="top: 150px;">
                 <center>
-                    <h4 style="color:#000;">GameBet Demo</h4>
-                    <h1 style="color:#000;">To begin this demo, please pick a user.</h1>
-                    <button id="button" class="blue globalRadius" type="button">Login as User 1</button>
-                    <button id="button" class="green globalRadius" type="button">Login as User 2</button>
+                    <h4 style="color:#000;">GameBet Demo - Challenge Page</h4>
+                    <h1 style="color:#000;">Please select a user to challenge</h1>
+                    @if(Auth::user()->id == 1)
+                      <button id="button" class="blue globalRadius" type="button">Login as User 1</button>
+                    @else
+                      <button id="button" class="blue globalRadius" type="button">Login as User 2</button>
+                    @endif
                 </center>
             </div>
         </div>
