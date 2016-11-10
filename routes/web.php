@@ -15,10 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login/1' , 'MainController@login1');
+Route::post('/login' , 'MainController@login')->name('login');
 
-Route::get('/login/2' , 'MainController@login2');
-
-Route::get('/logout' , 'MainController@logout');
+Route::get('/logout' , 'MainController@logout')->name('logout');
 
 
