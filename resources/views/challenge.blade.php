@@ -4,24 +4,24 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>Laravel</title> 
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:400,700,800" rel="stylesheet">
 
     </head>
 
     <body>
         @if(Auth::user()->id == 1)
-        <a href="{{ route('challengeEnter') }}">
-            <button> Challenge User 2 </button>
-        </a>
+            <button class="challenge"> Challenge User 2 </button>
         @else
-        <a href="{{ route('challengeEnter') }}">
-            <button> Challenge User 1 </button>
-        </a>
+            <button class="challenge"> Challenge User 1 </button>
         @endif
+
         <a href="{{ route('logout') }}">
             <button> Logout </button>
         </a>
@@ -31,3 +31,26 @@
         @endif
     </body>
 </html>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous">
+</script>
+
+<script>
+    $('.challenge').click(function(){
+        $.ajax({
+            method:'POST',
+            url: '{{ route("challengeEnter") }}',
+            data: {id:1},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success:function(data){
+                console.log('da');
+                window.location.href = "{{ route('challengePage') }}";
+            }
+        });
+    });
+</script>

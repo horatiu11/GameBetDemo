@@ -25,7 +25,9 @@ class ChallengeController extends Controller
         }
 
         if($challenge == null){
+
             $challenge = Challenge::where('state', '=', 1)->first();
+
             if($challenge == null){
                 $challenge = new Challenge();
                 $challenge->user1_id = $user->id;
@@ -42,9 +44,9 @@ class ChallengeController extends Controller
                     $challenge->save();
                 }
             }
-            return redirect()->route('/');
+            return Response::json(['message' => 'Challenge Successful!', 'code' => 1], 200);
         } else{
-            return redirect()->back();
+            return Response::json(['message' => 'Challenge Already Exists!', 'code' => 0], 200);
         }
     }
 
