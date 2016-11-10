@@ -29,6 +29,14 @@ class MainController extends Controller
     {
     	Auth::logout();
 
-    	return redirect()->back();
+    	return redirect()->route('welcomePage');
+    }
+
+    public function viewPage(Request $request)
+    {
+        if(Auth::check())
+            return redirect()->route('challengePage');
+
+        return view('welcome');
     }
 }

@@ -11,12 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/' , 'MainController@viewPage')->name('welcomePage');
 
+//Authentication routes----------------------------------------
 Route::post('/login' , 'MainController@login')->name('login');
 
 Route::get('/logout' , 'MainController@logout')->name('logout');
+//-------------------------------------------------------------
 
+Route::group(['middleware' => ['auth']], function () {
+	//Challenge routes---------------------------------------------
+	Route::get('/challenge', 'ChallengeController@viewPage')->name('challengePage');
 
+	Route::post('/challenge/enter', 'ChallengeController@joinChallenge')->name('challengeEnter');
+	//-------------------------------------------------------------
+});

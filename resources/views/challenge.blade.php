@@ -14,15 +14,15 @@
 
     <body>
         @if(Auth::user()->id == 1)
-        <a href="/login/1">
+        <a href="{{ route('challengeEnter') }}">
             <button> Challenge User 2 </button>
         </a>
         @else
-        <a href="/login/2">
+        <a href="{{ route('challengeEnter') }}">
             <button> Challenge User 1 </button>
         </a>
         @endif
-        <a href="/logout">
+        <a href="{{ route('logout') }}">
             <button> Logout </button>
         </a>
 

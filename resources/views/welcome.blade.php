@@ -18,14 +18,7 @@
         <br>
             <button id="b2"> Login as User 2 </button>
         <br>
-        <a href="{{ route('logout') }}">
-            <button> Logout </button>
-        </a>
-
-        @if(Auth::check())
-            Logged in as {{Auth::user()->name}}
-        @endif
-
+        
     </body>
 </html>
 
@@ -45,7 +38,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:function(data){
-                location.reload();
+                window.location.href = "{{ route('challengePage') }}";
             }
         });
     });
@@ -59,7 +52,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:function(data){
-                location.reload();
+                window.location.href = "{{ route('challengePage') }}";
             }
         });
     });

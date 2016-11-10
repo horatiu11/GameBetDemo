@@ -47,4 +47,8 @@ class ChallengeController extends Controller
             return redirect()->back();
         }
     }
+
+    public function viewPage(Request $request){
+        return view('challenge');
+    }
 }
