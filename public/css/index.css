@@ -1,0 +1,74 @@
+body{
+	background: #fff;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Catamaran', sans-serif;
+}
+
+h1{
+	font-weight: 800;
+	font-size: 30px;
+	line-height: 30px;
+}
+
+h4{
+	font-weight: 800;
+	font-size: 17px;
+	line-height: 30px;
+}
+
+.globalRadius{
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+}
+
+#content{
+	position: relative;
+	top: 0;
+	margin: 0 auto;
+	width: 100%; max-width: 950px;
+}
+
+#content-2x{
+	position: relative;
+	top: 0;
+	margin: 0 auto;
+	width: 100%; max-width: 400px;
+}
+
+#button{
+	padding: 15px 20px;
+	margin: 0 5px;
+	font-family: 'Catamaran', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	border: none;
+	box-shadow: 0 0 0 3px #eceff1;
+	cursor: pointer;
+	outline: none;
+}
+
+.blue{
+	background: #0085ff;
+	background: -webkit-linear-gradient(left, #0085ff , #00c0ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #0085ff , #00c0ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #0085ff , #00c0ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #0085ff , #00c0ff); /* Standard syntax (must be last) */
+	color: #fff;
+}
+
+#button:active{
+	box-shadow: 0 0 0 3px #eceff1, inset 0 3px 18px -3px rgba(0, 0, 0, 0.2);
+}
+
+.green{
+	background: #0fe7ab;
+	background: -webkit-linear-gradient(left, #0fe7ab , #00c0ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #0fe7ab , #00c0ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #0fe7ab , #00c0ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #0fe7ab , #00c0ff); /* Standard syntax (must be last) */
+	color: #fff;
+}
