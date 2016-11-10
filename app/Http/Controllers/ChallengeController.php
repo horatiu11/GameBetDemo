@@ -51,4 +51,8 @@ class ChallengeController extends Controller
     public function viewPage(Request $request){
         return view('challenge');
     }
+
+    public function viewWait(Request $request){
+        return view('wait');
+    }
 }

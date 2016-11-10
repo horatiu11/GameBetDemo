@@ -25,4 +25,10 @@ Route::group(['middleware' => ['auth']], function () {
 
 	Route::get('/challenge/enter', 'ChallengeController@joinChallenge')->name('challengeEnter');
 	//-------------------------------------------------------------
+
+	//Wait routes---------------------------------------------
+	Route::get('/wait', 'ChallengeController@viewWait')->name('waitPage');
+
+	//Route::get('/wait/outcome', 'ChallengeController@joinChallenge')->name('challengeEnter');
+	//-------------------------------------------------------------	
 });
