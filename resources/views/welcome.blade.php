@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>GameBet Demo</title>
 
         <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
         <!-- Fonts -->
