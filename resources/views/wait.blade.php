@@ -19,7 +19,7 @@
         <a style="float:right; margin-right:1em;" href="{{ route('logout') }}">
             <button id="button" class="blue globalRadius"> Logout </button>
         </a>
-        @if($challenge->status == 1)
+        @if($challenge->state == 1)
         <div id="content">
             <div id="content-2x" style="top: 150px;">
                 <center>
@@ -28,7 +28,7 @@
                 </center>
             </div>
         </div>
-        @elseif
+        @else
             <div id="content">
             <div id="content-2x" style="top: 150px;">
                 <center>
