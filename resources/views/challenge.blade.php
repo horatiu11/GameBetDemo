@@ -24,6 +24,9 @@
             <div id="content-2x" style="top: 150px;">
                 <center>
                     <h4 style="color:#000;">GameBet Demo - Challenge Page</h4>
+                        
+                    <h4 id="error"></h4>
+
                     <h1 style="color:#000;">Please select a user to challenge</h1>
                     @if(Auth::user()->id == 1)
                       <button id="button" class="blue globalRadius challenge" type="button">Challenge User 2</button>
@@ -44,30 +47,46 @@
 </script>
 
 <script>
-    $('.blue challenge').click(function(){
+    $('.blue.challenge').click(function(){
         $.ajax({
             method:'POST',
-            url: '{{ route("login") }}',
+            url: '{{ route("challengeEnter") }}',
             data:{id:2},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:function(data){
-                window.location.href = "{{ route('challengePage') }}";
+                window.location.href = "{{ route('waitPage') }}";
+            },
+            error:function(xhr, status, text){
+                if(xhr.status == 400)
+                {   
+                    var error = xhr.responseJSON.error;
+                    $('#error').html(error);
+                    $('#error').show();
+                }
             }
         });
     });
 
-    $('.green challenge').click(function(){
+    $('.green.challenge').click(function(){
         $.ajax({
             method:'POST',
-            url: '{{ route("login") }}',
+            url: '{{ route("challengeEnter") }}',
             data:{id:1},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:function(data){
-                window.location.href = "{{ route('challengePage') }}";
+                window.location.href = "{{ route('waitPage') }}";
+            },
+            error:function(xhr, status, text){
+                if(xhr.status == 400)
+                {
+                    var error = xhr.responseJSON.error;
+                    $('#error').html(error);
+                    $('#error').show();
+                }
             }
         });
     });

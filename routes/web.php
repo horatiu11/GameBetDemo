@@ -21,9 +21,9 @@ Route::get('/logout' , 'MainController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
 	//Challenge routes---------------------------------------------
-	Route::get('/challenge', 'ChallengeController@viewPage')->name('challengePage');
+	Route::get('/challenge', 'ChallengeController@viewPage')->middleware('currentUserChallenge')->name('challengePage');
 
-	Route::get('/challenge/enter', 'ChallengeController@joinChallenge')->name('challengeEnter');
+	Route::post('/challenge/create', 'ChallengeController@createChallenge')->middleware('uniqueChallenge')->name('challengeEnter');
 	//-------------------------------------------------------------
 
 	//Wait routes---------------------------------------------

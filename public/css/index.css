@@ -72,3 +72,8 @@ h4{
     background: linear-gradient(to right, #0fe7ab , #00c0ff); /* Standard syntax (must be last) */
 	color: #fff;
 }
+
+#error{
+	color:red;
+	display:none;
+}

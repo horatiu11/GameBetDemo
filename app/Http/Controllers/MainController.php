@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-
+use App\Challenge;
 use Auth;
 
 class MainController extends Controller
@@ -34,9 +34,6 @@ class MainController extends Controller
 
     public function viewPage(Request $request)
     {
-        if(Auth::check())
-            return redirect()->route('challengePage');
-
         return view('welcome');
     }
 }
