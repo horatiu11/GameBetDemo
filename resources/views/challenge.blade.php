@@ -26,9 +26,9 @@
                     <h4 style="color:#000;">GameBet Demo - Challenge Page</h4>
                     <h1 style="color:#000;">Please select a user to challenge</h1>
                     @if(Auth::user()->id == 1)
-                      <button id="button" class="blue globalRadius" type="button">Challenge User 2</button>
+                      <button id="button" class="blue globalRadius challenge" type="button">Challenge User 2</button>
                     @else
-                      <button id="button" class="green globalRadius" type="button">Challenge User 1</button>
+                      <button id="button" class="green globalRadius challenge" type="button">Challenge User 1</button>
                     @endif
                 </center>
             </div>
@@ -44,7 +44,7 @@
 </script>
 
 <script>
-    $('.blue').click(function(){
+    $('.blue challenge').click(function(){
         $.ajax({
             method:'POST',
             url: '{{ route("login") }}',
@@ -58,7 +58,7 @@
         });
     });
 
-    $('.green').click(function(){
+    $('.green challenge').click(function(){
         $.ajax({
             method:'POST',
             url: '{{ route("login") }}',
