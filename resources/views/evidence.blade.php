@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Head of the file-->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +21,7 @@
             <button id="button" class="blue globalRadius"> Logout </button>
         </a>
         <div id="content">
+            <!-- File input submission form -->
             <form id="submitForm" method="post" enctype="multipart/form-data" autocomplete="off">
             {!! csrf_field() !!}
             <div id="content-2x" style="top: 150px;">

@@ -60,7 +60,7 @@ class ChallengeController extends Controller
     }
 
     public function viewPage(Request $request){
-        
+        //return the challenge page
         $user = Auth::user();
 
         $challenge = Challenge::where('user1_id', '=', $user->id)->orWhere('user2_id', '=', $user->id)->first();
@@ -69,11 +69,11 @@ class ChallengeController extends Controller
     }
 
     public function viewWait(Request $request){
-
+        //return waiting page
         $user = Auth::user();
 
         $challenge = Challenge::where('user1_id', '=', $user->id)->orWhere('user2_id', '=', $user->id)->first();
-
+        //redirects if needed
         if($challenge == null)
             return redirect()->route('challengePage');
         if($challenge->state == 3 && ( ($challenge->user1_outcome != '' && $challenge->user1_id == $user->id) || ($challenge->user2_outcome != '' && $challenge->user2_id == $user->id)))
@@ -84,6 +84,7 @@ class ChallengeController extends Controller
 
     public function postOutcome(Request $request)
     {
+
         $outcome = $request->input('outcome');
         $result = 'lost';
         if($outcome == 1)
@@ -93,7 +94,7 @@ class ChallengeController extends Controller
 
         $challenge1 = Challenge::where('user1_id', '=', $user->id)->where('state', '>', 1)->first();
         $challenge2 = Challenge::where('user2_id', '=', $user->id)->where('state', '>', 1)->first();
-
+        //submit the choice of outcome
         if($challenge1 != null){
             $challenge1->state = 3;
             $challenge1->user1_outcome = $result;
@@ -126,10 +127,11 @@ class ChallengeController extends Controller
 
     public function viewOutcome(Request $request)
     {
+        //return the outcome view
         $user = Auth::user();
 
         $challenge = Challenge::where('user1_id', '=', $user->id)->orWhere('user2_id', '=', $user->id)->first();
-
+        //redirects if needed
         if($challenge == null)
             return redirect()->route('challengePage');
         if($challenge->state < 3)

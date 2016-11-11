@@ -18,6 +18,7 @@ class EvidenceController extends Controller
 
     public function viewPage(Request $request)
     {
+        //Returning the page even if the challenge is finished
         $user = Auth::user();
 
         $challenge = Challenge::where('user1_id', '=', $user->id)->orWhere('user2_id', '=', $user->id)->first();
@@ -34,15 +35,16 @@ class EvidenceController extends Controller
 
         if(!($challenge->user1_outcome == 'won' && $challenge->user2_outcome == 'won'))
             return redirect()->route('challengePage');
-
+        //Return view
         return view('evidence');
     }
 
     public function submitEvidence(Request $request)
     {
+        //Get challenge
         $user = Auth::user();
         $challenge = Challenge::where('user1_id', '=', $user->id)->orWhere('user2_id', '=', $user->id)->first();
-        
+        //Get files
         $files = $request->file('files');
 
         if($challenge == null){
@@ -54,7 +56,7 @@ class EvidenceController extends Controller
         }else{
             $fileName = 'evidence_user' .$user->id . '_challenge'.'.' . $files->getClientOriginalExtension();
             $files->move('evidences/challenge'.$challenge->id.'/', $fileName);
-
+            //Create and set finished challenge
             $fc = new FinishedChallenge();
             $fc->id = $challenge->id;
             $fc->user1_id = $challenge->user1_id;
@@ -71,6 +73,7 @@ class EvidenceController extends Controller
 
     public function evidence(Request $request)
     {
+        //Set confirmation in case of correct outcome
         $user = Auth::user();
         $challenge = Challenge::where('user1_id', '=', $user->id)->orWhere('user2_id', '=', $user->id)->first();
 
@@ -84,6 +87,7 @@ class EvidenceController extends Controller
             $challenge->user2_evidence = 1;
             $challenge->save();
         }
+        //Delete actual challenge and add it to finished ones
         if($challenge->user1_evidence == $challenge->user2_evidence)
         {
             $fc = new FinishedChallenge();

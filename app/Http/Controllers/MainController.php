@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Response;
 use App\Challenge;
 use Auth;
 
+//Basic functions -login/logout/return index page
 class MainController extends Controller
 {
     public function login(Request $request)
