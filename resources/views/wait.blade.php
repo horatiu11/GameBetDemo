@@ -19,6 +19,7 @@
         <a style="float:right; margin-right:1em;" href="{{ route('logout') }}">
             <button id="button" class="blue globalRadius"> Logout </button>
         </a>
+        @if($challenge->status == 1)
         <div id="content">
             <div id="content-2x" style="top: 150px;">
                 <center>
@@ -27,6 +28,18 @@
                 </center>
             </div>
         </div>
+        @elseif
+            <div id="content">
+            <div id="content-2x" style="top: 150px;">
+                <center>
+                    <h4 style="color:#000;">GameBet Demo</h4>
+                    <h1 style="color:#000;">The competition started! After it ends, please select one of the outcomes below...</h1>
+                    <button id="button" class="blue globalRadius challenge" type="button">I won!</button>
+                    <button id="button" class="green globalRadius challenge" type="button">I lost!</button>
+                </center>
+            </div>
+        </div>
+        @endif
 
     </body>
 </html>
@@ -43,11 +56,11 @@
         window.location.reload(1);
     }, 5000);
 
-    $('.blue').click(function(){
+    $('.blue challenge').click(function(){
         $.ajax({
             method:'POST',
             url: '{{ route("login") }}',
-            data:{id:1},
+            data:{id:2},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -57,11 +70,11 @@
         });
     });
 
-    $('.green').click(function(){
+    $('.green challenge').click(function(){
         $.ajax({
             method:'POST',
             url: '{{ route("login") }}',
-            data:{id:2},
+            data:{id:1},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
