@@ -24,11 +24,22 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/challenge', 'ChallengeController@viewPage')->middleware('currentUserChallenge')->name('challengePage');
 
 	Route::post('/challenge/create', 'ChallengeController@createChallenge')->middleware('uniqueChallenge')->name('challengeEnter');
+
+	Route::post('/challenge/accept', 'ChallengeController@acceptChallenge')->name('challengeAccept');
 	//-------------------------------------------------------------
 
 	//Wait routes---------------------------------------------
 	Route::get('/wait', 'ChallengeController@viewWait')->name('waitPage');
 
-	Route::get('/wait/outcome', 'ChallengeController@postOutcome')->name('challengeOutcome');
+	Route::post('/wait/post', 'ChallengeController@postOutcome')->name('challengeOutcome');
+	//-------------------------------------------------------------	
+
+	//Outcome routes---------------------------------------------
+	Route::get('/outcome', 'ChallengeController@viewOutcome')->name('outcomePage');
+
+	Route::post('/outcome/confirm', 'EvidenceController@evidence')->name('confirm');
+
+	Route::get('/evidence', 'EvidenceController@viewPage')->name('evidencePage');
+	Route::post('/evidence/submit', 'EvidenceController@submitEvidence')->name('submit');
 	//-------------------------------------------------------------	
 });

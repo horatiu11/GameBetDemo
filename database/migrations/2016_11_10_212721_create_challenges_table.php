@@ -20,6 +20,8 @@ class CreateChallengesTable extends Migration
             $table->integer('state')->default(0);
             $table->string('user1_outcome')->nullable();
             $table->string('user2_outcome')->nullable();
+            $table->integer('user1_evidence')->default(0);
+            $table->integer('user2_evidence')->default(0);
             $table->timestamps();
             $table->timestamp('ended_at')->nullable();
         });

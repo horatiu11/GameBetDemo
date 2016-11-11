@@ -22,6 +22,7 @@
         </a>
         <div id="content">
             <div id="content-2x" style="top: 150px;">
+                @if($challenge == null)
                 <center>
                     <h4 style="color:#000;">GameBet Demo - Challenge Page</h4>
                         
@@ -34,6 +35,17 @@
                       <button id="button" class="green globalRadius challenge" type="button">Challenge User 1</button>
                     @endif
                 </center>
+                @else
+                 <center>
+                    <h4 style="color:#000;">GameBet Demo</h4>
+                        
+                    <h4 id="error"></h4>
+
+                    <h1 style="color:#000;">You have been challenged by User{{3-Auth::user()->id}}. Accept or decline below</h1>
+                      <button id="button" class="blue globalRadius challenge" type="button">Accept</button>
+                      <button id="button" class="green globalRadius challenge" type="button">Decline</button>
+                </center>
+                @endif
             </div>
         </div>
 
@@ -47,11 +59,27 @@
 </script>
 
 <script>
+    @if($challenge == null)
+    setTimeout(function(){
+                        window.location.reload(1);
+                    }, 10000);
+    @endif
+
     $('.blue.challenge').click(function(){
         $.ajax({
             method:'POST',
+            @if($challenge == null)
             url: '{{ route("challengeEnter") }}',
+            @else
+            url: '{{ route("challengeAccept") }}',
+            @endif
+
+            @if($challenge == null)
             data:{id:2},
+            @else
+            data:{decision: 2},
+            @endif
+
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -72,8 +100,18 @@
     $('.green.challenge').click(function(){
         $.ajax({
             method:'POST',
+            @if($challenge == null)
             url: '{{ route("challengeEnter") }}',
+            @else
+            url: '{{ route("challengeAccept") }}',
+            @endif
+
+            @if($challenge == null)
             data:{id:1},
+            @else
+            data:{decision: 0},
+            @endif
+            
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

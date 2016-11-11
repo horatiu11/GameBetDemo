@@ -24,16 +24,20 @@
             <div id="content-2x" style="top: 150px;">
                 <center>
                     <h4 style="color:#000;">GameBet Demo</h4>
-                    <h1 style="color:#000;">Please, wait for your opponent to accept the challenge...</h1>
+                    <h1 style="color:#000;">Please, wait for your opponent to accept the challenge...If he declines, you will be redirected to the Challenge Page</h1>
                 </center>
             </div>
         </div>
-        @else
+        @elseif($challenge->state >= 2)
             <div id="content">
             <div id="content-2x" style="top: 150px;">
                 <center>
                     <h4 style="color:#000;">GameBet Demo</h4>
+                    @if($challenge->state == 2)
                     <h1 style="color:#000;">The competition started! After it ends, please select one of the outcomes below...</h1>
+                    @else
+                    <h1 style="color:#000;">It seems that the other user already picked an outcome... Please, do the same ASAP!</h1>
+                    @endif
                     <button id="button" class="blue globalRadius challenge" type="button">I won!</button>
                     <button id="button" class="green globalRadius challenge" type="button">I lost!</button>
                 </center>
@@ -52,34 +56,36 @@
 
 <script>
 
+    @if($challenge->state == 1)
     setTimeout(function(){
         window.location.reload(1);
     }, 5000);
+    @endif
 
-    $('.blue challenge').click(function(){
+    $('.blue.challenge').click(function(){
         $.ajax({
             method:'POST',
-            url: '{{ route("login") }}',
-            data:{id:2},
+            url: '{{ route("challengeOutcome") }}',
+            data:{outcome: 1},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:function(data){
-                window.location.href = "{{ route('challengePage') }}";
+                window.location.href = "{{ route('outcomePage') }}";
             }
         });
     });
 
-    $('.green challenge').click(function(){
+    $('.green.challenge').click(function(){
         $.ajax({
             method:'POST',
-            url: '{{ route("login") }}',
-            data:{id:1},
+            url: '{{ route("challengeOutcome") }}',
+            data:{outcome: 0},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success:function(data){
-                window.location.href = "{{ route('challengePage') }}";
+                window.location.href = "{{ route('outcomePage') }}";
             }
         });
     });

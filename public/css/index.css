@@ -39,7 +39,7 @@ h4{
 	width: 100%; max-width: 400px;
 }
 
-#button{
+#button, #evidence{
 	padding: 15px 20px;
 	margin: 0 5px;
 	font-family: 'Catamaran', sans-serif;

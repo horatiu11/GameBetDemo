@@ -34,6 +34,8 @@ class MainController extends Controller
 
     public function viewPage(Request $request)
     {
+        if(Auth::check())
+            return redirect()->route('challengePage');
         return view('welcome');
     }
 }
