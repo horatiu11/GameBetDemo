@@ -29,6 +29,6 @@ Route::group(['middleware' => ['auth']], function () {
 	//Wait routes---------------------------------------------
 	Route::get('/wait', 'ChallengeController@viewWait')->name('waitPage');
 
-	//Route::get('/wait/outcome', 'ChallengeController@joinChallenge')->name('challengeEnter');
+	Route::get('/wait/outcome', 'ChallengeController@postOutcome')->name('challengeOutcome');
 	//-------------------------------------------------------------	
 });

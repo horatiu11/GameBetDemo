@@ -59,6 +59,15 @@ class ChallengeController extends Controller
     }
 
     public function viewWait(Request $request){
-        return view('wait');
+        $user = Auth::user();
+        $challenge = Challenge::where('user1_id', '=', $user->id)->orWhere('user2_id', '=', $user->id)->first();
+        if($challenge == null || $challenge->status == 0 || $challenge->status == 3)
+            return redirect()->route('challengePage');
+        return view('wait', ['challenge' => $challenge]);
+    }
+
+    public function postOutcome(Request $request)
+    {
+        //
     }
 }

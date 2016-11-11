@@ -18,6 +18,8 @@ class CreateChallengesTable extends Migration
             $table->integer('user1_id')->nullable();
             $table->integer('user2_id')->nullable();
             $table->integer('state')->default(0);
+            $table->string('user1_outcome')->nullable();
+            $table->string('user2_outcome')->nullable();
             $table->timestamps();
             $table->timestamp('ended_at')->nullable();
         });
