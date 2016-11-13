@@ -30,7 +30,20 @@
                 </center>
             </div>
         </div>
-        @elseif($challenge->state == 3 && $challenge->user1_evidence == 0 && $challenge->user2_evidence == 0)
+        @elseif((($challenge->user1_id == Auth::user()->id && $challenge->user1_evidence == 1)
+        ||  ($challenge->user2_id == Auth::user()->id && $challenge->user2_evidence == 1))
+        && $challenge->state == 3)
+        <div id="content">
+            <div id="content-2x" style="top: 150px;">
+                <center>
+                    <h4 style="color:#000;">GameBet Demo - Outcome</h4>
+                    
+                    <h1 style="color:#000;">Thank you! Please wait for the other user to select the outcome...</h1>
+
+                </center>
+            </div>
+        </div>
+        @elseif($challenge->state == 3)
             <div id="content">
             <div id="content-2x" style="top: 150px;">
                 <center>
@@ -53,17 +66,7 @@
                 </center>
             </div>
         </div>
-        @elseif(($challenge->user1_evidence == 1 || $challenge->user2_evidence == 1) && $challenge->state == 3)
-        <div id="content">
-            <div id="content-2x" style="top: 150px;">
-                <center>
-                    <h4 style="color:#000;">GameBet Demo - Outcome</h4>
-                    
-                    <h1 style="color:#000;">Thank you! Please wait for the other user to select the outcome...</h1>
-
-                </center>
-            </div>
-        </div>
+        
 
         @endif
 
